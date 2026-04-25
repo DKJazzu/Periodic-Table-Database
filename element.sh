@@ -21,4 +21,12 @@ else
 # query the database
   RESULT=$($PSQL "SELECT e.atomic_number, e.name, e.symbol, t.type, p.atomic_mass, p.melting_point_celsius, p.boiling_point_celsius FROM elements e JOIN properties p USING(atomic_number) JOIN types t USING(type_id) WHERE $WHERE_CLAUSE;")
 
+if [[ ! -z "$RESULT" ]]
+  then
+# parse result 
+    IFS="|" read -r NUM NAME SYMBOL TYPE MASS MELT BOIL <<< "$RESULT"
+# output 
+    echo "The element with atomic number $NUM is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELT celsius and a boiling point of $BOIL celsius."
+  fi
+  
 fi
