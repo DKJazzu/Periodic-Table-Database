@@ -11,7 +11,7 @@ else
   if [[ "$1" =~ ^[0-9]+$ ]]
   then
     WHERE_CLAUSE="e.atomic_number = $1"
-  elif [[ "$1" =~ ^[A-Z][a-z]?$ ]]
+  elif [[ "$1" =~ ^[A-Z][a-z]{0,2}$ ]]
   then
     WHERE_CLAUSE="e.symbol = '$1'"
   else
@@ -31,5 +31,4 @@ else
 # output 
     echo "The element with atomic number $NUM is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELT celsius and a boiling point of $BOIL celsius." 
   fi
-  
 fi
