@@ -11,7 +11,7 @@ else
   if [[ "$1" =~ ^[0-9]+$ ]]
   then
     WHERE_CLAUSE="e.atomic_number = $1"
-  elif [[ "$1" =~ ^[A-Z][a-z]{0,2}$ ]]
+  elif [[ "$1" =~ ^[A-Z][a-z]?$ ]]
   then
     WHERE_CLAUSE="e.symbol = '$1'"
   else
